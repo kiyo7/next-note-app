@@ -6,6 +6,7 @@ import { Note, EditedNote } from '../types/types'
 
 export const useMutateNote = () => {
   const reset = useStore((state) => state.resetEditedNote)
+
   const createNoteMutation = useMutation(
     async (note: Omit<Note, 'created_at' | 'id' | 'comments'>) => {
       const { data, error } = await supabase.from('notes').insert(note)
@@ -36,7 +37,7 @@ export const useMutateNote = () => {
     {
       onSuccess: (res) => {
         revalidateList()
-        revalidateSingle(res[0].id)
+        // revalidateSingle(res[0].id)
         reset()
         alert('Successfully completed !!')
       },

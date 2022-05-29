@@ -37,7 +37,7 @@ export const useMutateNote = () => {
     {
       onSuccess: (res) => {
         revalidateList()
-        // revalidateSingle(res[0].id)
+        revalidateSingle(res[0].id)
         reset()
         alert('Successfully completed !!')
       },

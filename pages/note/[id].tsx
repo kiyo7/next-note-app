@@ -7,8 +7,9 @@ import { CommentForm } from '../../components/CommentForm'
 import { CommentItem } from '../../components/CommentItem'
 import { Note } from '../../types/types'
 
-const getAllNoteIds = async () => {
+const getAllNoteIds: any = async () => {
   const { data: ids } = await supabase.from('notes').select('id')
+
   return ids!.map((id) => {
     return {
       params: {
@@ -20,6 +21,7 @@ const getAllNoteIds = async () => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllNoteIds()
+
   return {
     paths,
     fallback: 'blocking',
@@ -46,6 +48,7 @@ type StaticProps = {
 }
 
 const NotePage: NextPage<StaticProps> = ({ note }) => {
+  console.log('Note page invoked')
   return (
     <Layout title="NoteDetail">
       <p className="text-3xl font-semibold text-blue-500">{note.title}</p>

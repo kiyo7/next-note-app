@@ -7,7 +7,7 @@ import { CommentForm } from '../../components/CommentForm'
 import { CommentItem } from '../../components/CommentItem'
 import { Note } from '../../types/types'
 
-const getAllNoteIds: any = async () => {
+const getAllNoteIds = async () => {
   const { data: ids } = await supabase.from('notes').select('id')
 
   return ids!.map((id) => {
@@ -21,7 +21,6 @@ const getAllNoteIds: any = async () => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllNoteIds()
-
   return {
     paths,
     fallback: 'blocking',
